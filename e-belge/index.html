@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>YAY e-Belge</title>
-<meta http-equiv="refresh" content="0; url=https://yay1.tail0bece5.ts.net/">
-<link rel="canonical" href="https://yay1.tail0bece5.ts.net/">
-<script>location.replace("https://yay1.tail0bece5.ts.net/");</script>
 <style>
   body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
          font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1b1f24; background: #fff; }
@@ -16,6 +13,30 @@
 </style>
 </head>
 <body>
-  <p>YAY e-Belge açılıyor…<br>Açılmazsa <a href="https://yay1.tail0bece5.ts.net/">buraya dokunun</a>.</p>
+<p id="m">YAY e-Belge açılıyor…</p>
+<script>
+// Önce ana sunucu (YAY1) denenir; 5 sn içinde yanıt vermezse yedek sunucuya geçilir.
+var ANA = "https://yay1.tail0bece5.ts.net/";
+var YEDEK = "https://yay-yedek.tail0bece5.ts.net/";
+
+function dene(adres, sure) {
+  var c = new AbortController();
+  var t = setTimeout(function () { c.abort(); }, sure);
+  return fetch(adres + "api/saglik", { cache: "no-store", signal: c.signal })
+    .then(function (y) { clearTimeout(t); return y.ok; })
+    .catch(function () { clearTimeout(t); return false; });
+}
+
+dene(ANA, 5000).then(function (ok) {
+  if (ok) return location.replace(ANA);
+  document.getElementById("m").textContent = "Ana sunucuya ulaşılamadı, yedek sunucu açılıyor…";
+  return dene(YEDEK, 8000).then(function (ok2) {
+    if (ok2) return location.replace(YEDEK);
+    document.getElementById("m").innerHTML = 'Sunucuya şu an ulaşılamıyor. Lütfen biraz sonra tekrar deneyin.<br>' +
+      '<a href="' + ANA + '">Ana sunucu</a> · <a href="' + YEDEK + '">Yedek sunucu</a>';
+  });
+});
+</script>
+<noscript><p><a href="https://yay1.tail0bece5.ts.net/">YAY e-Belge'yi açmak için dokunun</a></p></noscript>
 </body>
 </html>
