@@ -24,9 +24,7 @@ html[lang="en"] .tr-only{display:none!important}
 .rv{opacity:0;transition:opacity 1.1s cubic-bezier(.22,.61,.36,1)}
 .rv.on{opacity:1}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transition:none}}
-html.snap{scroll-snap-type:y proximity}
-html.snap .snapsec{scroll-snap-align:start;scroll-snap-stop:always}
-@media(max-width:940px){html.snap{scroll-snap-type:none}}
+
 
 /* header */
 header{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
@@ -148,7 +146,7 @@ section{padding:100px 0}
 
 /* cta band */
 .cta{background:linear-gradient(150deg,#1a2c55, #0d1930 60%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.cta .in{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;padding:64px 0}
+.cta .in{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;padding-top:64px;padding-bottom:64px}
 .cta h2{font-size:clamp(1.6rem,3vw,2.3rem)}
 .cta p{color:var(--mut);margin:10px 0 0}
 

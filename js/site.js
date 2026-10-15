@@ -36,10 +36,6 @@
     lb.addEventListener('click',closeLb);
     document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
   }
-  if(document.querySelector('.snapsec')&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.documentElement.classList.add('snap');
-  }
-
   var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
     es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target)}})
   },{threshold:.12}):null;
@@ -95,7 +91,7 @@
   }
   window.loadNews=function(l){
     if(l!=='tr')return;
-    if(!done.m&&g1){done.m=1;chain('https://www.alomaliye.com/feed/','utf-8','Alomaliye',null,g1)}
+    if(!done.m&&g1){done.m=1;chain('https://www.yaklasim.com/rss','utf-8','Yaklaşım',null,g1)}
     if(!done.b&&g2){done.b=1;chain('https://www.muhasebetr.com/rss/','windows-1254','MuhasebeTR',function(link){return /ulusalbasin|yazarlarimiz|sorucevap/.test(link)},g2)}
   };
   loadNews(document.documentElement.lang||'tr');
